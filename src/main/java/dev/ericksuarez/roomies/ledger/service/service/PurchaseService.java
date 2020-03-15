@@ -16,15 +16,15 @@ public class PurchaseService {
     @Autowired
     private PurchaseRepository purchaseRepository;
 
-
     public List<Purchase> getAllPurchase() {
         return purchaseRepository.findAll();
     }
 
-    public Optional<Purchase> findPurchaseById(Long id) {
-        return purchaseRepository.findById(id);
+    public Purchase findPurchaseById(Long id) {
+        return purchaseRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Purchase Not Found"));
     }
-/*
+
     public List<Purchase> getAllPurchaseByUserId(Long userId) {
         return purchaseRepository.getAllByUserId(userId);
     }
@@ -33,14 +33,16 @@ public class PurchaseService {
         return purchaseRepository.getAllByHouseId(houseId);
     }
 
- */
-
     public Purchase createOrUpdatePurchase(Purchase purchase) {
         return purchaseRepository.save(purchase);
     }
 
-    public ResponseEntity<?> deletePurchase(Purchase purchase){
-        purchaseRepository.delete(purchase);
+    public ResponseEntity<?> deletePurchase(Long id){
+        purchaseRepository.findById(id)
+                .map( purchase -> {
+                    purchaseRepository.delete(purchase);
+                    return ResponseEntity.ok().build();
+                });
         return ResponseEntity.ok().build();
     }
 }

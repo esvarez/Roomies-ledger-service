@@ -1,5 +1,7 @@
 package dev.ericksuarez.roomies.ledger.service.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 @Entity
 @Table(name = "houses")
-public class House {
+public class House implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
