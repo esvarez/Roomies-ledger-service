@@ -10,6 +10,8 @@ public class RoomiesUri {
 
     public static final String GET_PURCHASES_FROM_HOUSE = "/getPurchasesFromHouse";
 
+    public static final String LEDGER = "/ledgers";
 
+    public static final String GET_LEDGER_FROM_USER = "/getLedgerFromUser";
 
 }

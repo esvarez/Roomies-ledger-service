@@ -21,17 +21,26 @@ public class LedgerService {
         return ledgerRepository.findAll();
     }
 
-    public Optional<Ledger> findLedgerById(Long id) {
-        return ledgerRepository.findById(id);
+    public Ledger findLedgerById(Long id) {
+        return ledgerRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Ledger Not found"));
     }
 
     public Ledger createOrUpdateLedger(Ledger ledger) {
         return ledgerRepository.save(ledger);
     }
 
-    public ResponseEntity<?> deletePurchase(Ledger ledger){
-        ledgerRepository.delete(ledger);
+    public ResponseEntity<?> deleteLedger(Long id){
+        ledgerRepository.findById(id)
+                .map(ledger -> {
+                    ledgerRepository.delete(ledger);
+                    return ResponseEntity.ok().build();
+                });
         return ResponseEntity.ok().build();
+    }
+
+    public List<Ledger> getAllLedgersByUserId(Long userId) {
+        return ledgerRepository.getAllByUserId(userId);
     }
 
 }
