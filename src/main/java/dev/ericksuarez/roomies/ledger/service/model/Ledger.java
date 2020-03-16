@@ -46,4 +46,6 @@ public class Ledger extends AuditModel{
 
     @Column(name = "amount_paid")
     private BigDecimal amountPaid;
+
+    private boolean paid;
 }

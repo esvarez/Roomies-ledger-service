@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
+import dev.ericksuarez.roomies.ledger.service.model.PurchaseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -36,8 +37,8 @@ public class PurchaseController {
     }
 
     @PostMapping(PURCHASE)
-    Purchase createPurchase(@Valid Purchase purchase) {
-        return purchaseService.createOrUpdatePurchase(purchase);
+    Purchase createPurchase(@Valid @RequestBody PurchaseDto purchase) {
+        return purchaseService.createPurchase(purchase);
     }
 
     @PutMapping(PURCHASE + "/{id}")

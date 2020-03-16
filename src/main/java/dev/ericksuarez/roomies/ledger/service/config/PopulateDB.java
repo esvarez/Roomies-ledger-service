@@ -33,13 +33,13 @@ public class PopulateDB {
             userRepository.save(user);
             userRepository.save(user1);
             userRepository.save(user2);
-            Purchase purchase = Purchase.builder().user(user).description("uno").price(BigDecimal.ONE).date(LocalDateTime.now()).build();
+            Purchase purchase = Purchase.builder().user(user).description("uno").price(BigDecimal.ONE).date(LocalDate.now()).build();
             purchase.setCreatedAt(Date.from(Instant.now()));
             purchase.setUpdatedAt(Date.from(Instant.now()));
-            Purchase purchase1 = Purchase.builder().user(user1).description("dos").price(BigDecimal.TEN).date(LocalDateTime.now()).build();
+            Purchase purchase1 = Purchase.builder().user(user1).description("dos").price(BigDecimal.TEN).date(LocalDate.now()).build();
             purchase1.setCreatedAt(Date.from(Instant.now()));
             purchase1.setUpdatedAt(Date.from(Instant.now()));
-            Purchase purchase2 = Purchase.builder().user(user2).description("dos").price(BigDecimal.ONE).date(LocalDateTime.now()).build();
+            Purchase purchase2 = Purchase.builder().user(user2).description("dos").price(BigDecimal.ONE).date(LocalDate.now()).build();
             purchase2.setCreatedAt(Date.from(Instant.now()));
             purchase2.setUpdatedAt(Date.from(Instant.now()));
             purchaseService.createOrUpdatePurchase(purchase);

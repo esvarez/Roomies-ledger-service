@@ -30,6 +30,10 @@ public class LedgerService {
         return ledgerRepository.save(ledger);
     }
 
+    public List<Ledger> createLedgers(List<Ledger> ledgers) {
+        return ledgerRepository.saveAll(ledgers);
+    }
+
     public ResponseEntity<?> deleteLedger(Long id){
         ledgerRepository.findById(id)
                 .map(ledger -> {

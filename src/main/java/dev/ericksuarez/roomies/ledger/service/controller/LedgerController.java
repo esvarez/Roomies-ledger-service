@@ -35,18 +35,13 @@ public class LedgerController {
         return ledgerService.findLedgerById(id);
     }
 
-    @PostMapping(LEDGER)
-    Ledger createLedger(@Valid @RequestBody Ledger ledger) {
-        return ledgerService.createOrUpdateLedger(ledger);
-    }
-
     @PutMapping(LEDGER + "/{id}")
     Ledger updateLedger(@PathVariable(value = "id") @Min(1) Long id, @Valid @RequestBody Ledger ledger) {
         ledger.setId(id);
         return ledgerService.createOrUpdateLedger(ledger);
     }
 
-    @DeleteMapping
+    @DeleteMapping(LEDGER)
     ResponseEntity<?> deleteLedger(@PathVariable(value = "id") @Min(1) Long id){
         return ledgerService.deleteLedger(id);
     }
