@@ -4,13 +4,13 @@ server:
      #   context-path: /resource-server
 
 spring:
-    profiles:
-        active: dev
+    jpa:
+        hibernate:
+            ddl-auto: update
     datasource:
-        url: jdbc:h2:mem:testdb
-        driver-class-name: org.h2.Driver
-        username: sa
-        password:
+        url: jdbc:mysql://127.0.0.1:6603/roomies
+        username: root
+        password: password;
 
     security:
         oauth2:
@@ -18,9 +18,6 @@ spring:
                 jwt:
                     issuer-uri: http://localhost:8083/auth/realms/esuarez
                     jwk-set-uri: http://localhost:8083/auth/realms/esuarez/protocol/openid-connect/certs
-
-    jpa:
-        database-platform: org.hibernate.dialect.H2Dialect
 
     h2:
         console:

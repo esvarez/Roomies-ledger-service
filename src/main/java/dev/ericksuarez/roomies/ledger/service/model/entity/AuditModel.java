@@ -1,4 +1,4 @@
-package dev.ericksuarez.roomies.ledger.service.model;
+package dev.ericksuarez.roomies.ledger.service.model.entity;
 
 import java.io.Serializable;
 import java.util.Date;

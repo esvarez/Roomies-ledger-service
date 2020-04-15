@@ -2,18 +2,17 @@ package dev.ericksuarez.roomies.ledger.service.service;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
-import dev.ericksuarez.roomies.ledger.service.model.Ledger;
+import dev.ericksuarez.roomies.ledger.service.model.entity.Ledger;
 import dev.ericksuarez.roomies.ledger.service.model.PurchaseDto;
-import dev.ericksuarez.roomies.ledger.service.model.User;
+import dev.ericksuarez.roomies.ledger.service.model.entity.relations.User;
 import dev.ericksuarez.roomies.ledger.service.repository.LedgerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import dev.ericksuarez.roomies.ledger.service.model.Purchase;
+import dev.ericksuarez.roomies.ledger.service.model.entity.Purchase;
 import dev.ericksuarez.roomies.ledger.service.repository.PurchaseRepository;
 
 @Service

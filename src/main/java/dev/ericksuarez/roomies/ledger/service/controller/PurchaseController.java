@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.ericksuarez.roomies.ledger.service.model.Purchase;
+import dev.ericksuarez.roomies.ledger.service.model.entity.Purchase;
 import dev.ericksuarez.roomies.ledger.service.service.PurchaseService;
 
 import static dev.ericksuarez.roomies.ledger.service.config.RoomiesUri.API;

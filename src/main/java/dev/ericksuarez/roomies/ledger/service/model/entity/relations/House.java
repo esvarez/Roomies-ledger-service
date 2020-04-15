@@ -1,4 +1,4 @@
-package dev.ericksuarez.roomies.ledger.service.model;
+package dev.ericksuarez.roomies.ledger.service.model.entity.relations;
 
 import java.io.Serializable;
 
@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @Entity
-@Table(name = "houses")
+@Table(name = "units")
 public class House implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

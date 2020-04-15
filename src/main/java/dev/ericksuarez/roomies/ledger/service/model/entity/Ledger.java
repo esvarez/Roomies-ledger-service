@@ -1,8 +1,8 @@
-package dev.ericksuarez.roomies.ledger.service.model;
+package dev.ericksuarez.roomies.ledger.service.model.entity;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,13 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 
+import dev.ericksuarez.roomies.ledger.service.model.entity.relations.User;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,8 +26,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @Entity
-@Table(name = "purchases")
-public class Purchase extends AuditModel{
+@Table(name = "ledger")
+public class Ledger extends AuditModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -38,18 +35,18 @@ public class Purchase extends AuditModel{
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private User user;
 
-    @Positive
-    @NotNull(message = "Provide the price of your purchase")
-    private BigDecimal price;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "purchase_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Purchase purchaseId;
 
-    @NotNull(message = "Provide a description or meaningful name")
-    private String description;
+    @Column(name = "amount_debt")
+    private BigDecimal amountDebt;
 
-    private String photo;
+    @Column(name = "amount_paid")
+    private BigDecimal amountPaid;
 
-    @NotNull
-    private LocalDate date;
+    private boolean paid;
 }

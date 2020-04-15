@@ -1,6 +1,6 @@
 package dev.ericksuarez.roomies.ledger.service.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import dev.ericksuarez.roomies.ledger.service.model.entity.relations.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,6 +1,6 @@
 package dev.ericksuarez.roomies.ledger.service;
 
-import dev.ericksuarez.roomies.ledger.service.model.House;
+import dev.ericksuarez.roomies.ledger.service.model.entity.relations.House;
 import dev.ericksuarez.roomies.ledger.service.repository.LedgerRepository;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;

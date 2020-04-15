@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import dev.ericksuarez.roomies.ledger.service.model.Purchase;
+import dev.ericksuarez.roomies.ledger.service.model.entity.Purchase;
 
 @Repository
 public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
