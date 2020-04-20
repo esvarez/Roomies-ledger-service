@@ -1,13 +1,16 @@
 package dev.ericksuarez.roomies.ledger.service.service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import dev.ericksuarez.roomies.ledger.service.model.entity.Ledger;
-import dev.ericksuarez.roomies.ledger.service.model.PurchaseDto;
 import dev.ericksuarez.roomies.ledger.service.model.entity.relations.User;
 import dev.ericksuarez.roomies.ledger.service.repository.LedgerRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -15,15 +18,15 @@ import org.springframework.stereotype.Service;
 import dev.ericksuarez.roomies.ledger.service.model.entity.Purchase;
 import dev.ericksuarez.roomies.ledger.service.repository.PurchaseRepository;
 
+import javax.swing.text.html.Option;
+
+@Slf4j
 @Service
 public class PurchaseService {
 
     @Autowired
     private PurchaseRepository purchaseRepository;
-
-    @Autowired
-    private LedgerRepository ledgerRepository;
-
+/*
     public Purchase createPurchase(PurchaseDto purchaseDto) {
         final Purchase purchase = Purchase.builder()
                 .user(purchaseDto.getUser())
@@ -62,7 +65,7 @@ public class PurchaseService {
         ledgerRepository.saveAll(ledgers);
         return purchase;
     }
-
+*/
     private boolean isOwnPurchase(Long userId, Long ownPurchase){
         return userId == ownPurchase;
     }
@@ -76,15 +79,22 @@ public class PurchaseService {
                 .orElseThrow(() -> new RuntimeException("Purchase Not Found"));
     }
 
-    public List<Purchase> getAllPurchaseByUserId(Long userId) {
+    public List<Purchase> getAllPurchaseByUserId(UUID userId) {
         return purchaseRepository.getAllByUserId(userId);
     }
 
-    public List<Purchase> getAllPurchaseByHouseId(Long houseId) {
-        return purchaseRepository.getAllByHouseId(houseId);
+    public List<Purchase> getAllPurchaseByHouseId(Long houseId, Optional<LocalDate> startDate, Optional<LocalDate> endDate) {
+        log.info("event=getAllPurchaseByHouseIdInvoked houseId={} startDate={} endDate={}", houseId, startDate, endDate);
+        if (startDate.isPresent() && endDate.isPresent()){
+            log.info("event=datesPresent");
+            return purchaseRepository.getAllByUnitIdAndDate(houseId, startDate.get(), endDate.get());
+        }
+        log.info("event=getPurchaseById");
+        return purchaseRepository.getAllByUnitId(houseId);
     }
 
     public Purchase createOrUpdatePurchase(Purchase purchase) {
+        log.info("event=createOrUpdatePurchaseInvoked purchase={}", purchase);
         return purchaseRepository.save(purchase);
     }
 

@@ -6,48 +6,49 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @Entity
-@Table(name = "purchases")
-public class Purchase extends AuditModel {
+@Table(name = "accounts")
+public class Account extends AuditModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "user_id", nullable = false)
-    //@OnDelete(cascade = CascadeType.ALL)
     @JsonIgnore
-    private User user;
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            },mappedBy = "accounts")
+    private Set<User> users  = new HashSet<>();
 
-    @Positive
-    @NotNull(message = "Provide the price of your purchase")
-    private BigDecimal price;
+    @JsonIgnore
+    @Type(type="uuid-char")
+    private UUID userCred;
 
-    @NotNull(message = "Provide a description or meaningful name")
-    private String description;
+    @JsonIgnore
+    @Type(type="uuid-char")
+    private UUID userDebt;
 
-    private String photo;
-
-    @NotNull
-    private LocalDate date;
+    @Column(name = "amount_debt")
+    private BigDecimal amountDebt;
 }

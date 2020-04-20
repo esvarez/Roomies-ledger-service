@@ -1,6 +1,6 @@
 package dev.ericksuarez.roomies.ledger.service;
 
-import dev.ericksuarez.roomies.ledger.service.model.entity.relations.House;
+import dev.ericksuarez.roomies.ledger.service.model.entity.relations.Unit;
 import dev.ericksuarez.roomies.ledger.service.repository.LedgerRepository;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +15,8 @@ public class TestUtil {
     private LedgerRepository ledgerRepository;
 
     public static void setUp() {
-        val house = House.builder().build();
+        val house = Unit.builder().build();
 
-        this.testEntityManager.persist(house);
+        //this.testEntityManager.persist(house);
     }
 }

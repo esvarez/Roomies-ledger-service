@@ -21,6 +21,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+// TODO Move to microservice to manage history
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
