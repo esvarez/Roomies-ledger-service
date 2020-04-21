@@ -28,14 +28,14 @@ public class AccountService {
 
     public Object getAccountsByUserId(UUID userId) {
         log.info("event=getAccountsByUserIdInvoked userId={}", userId);
-        Set<Account> accounts = accountRepository.findAccountByUsersId(userId);
+        Set<Account> accounts = accountRepository.findAccountsByUsersId(userId);
         log.info("event=getAccountsByUserIdInvoked accounts={}", accounts);
         return null;
     }
 
     public Set<Account> findAccountByUsersId(UUID userId) {
         log.info("event=findAccountByUsersIdInvoked userId={}", userId);
-        return accountRepository.findAccountByUsersId(userId);
+        return accountRepository.findAccountsByUsersId(userId);
     }
 
     public Account saveAccount(Account account) {

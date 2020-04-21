@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.HashSet;
 import java.util.Set;
 
 @Slf4j
@@ -78,20 +79,25 @@ public class AccountFacade {
                     .userCred(userBuyer.getId())
                     .userDebt(user.getId())
                     .amountDebt(amount)
+                    .users(new HashSet<>())
                     .build();
             // TODO add account to user
             log.info("event=accounts account={}", account);
-            userBuyer = userRepository.findById(userBuyer.getId())
-                    .orElseThrow(() -> new RuntimeException("Code trash"));
+
+            /*userBuyer = userRepository.findById(userBuyer.getId())
+                    .orElseThrow(() -> new RuntimeException("Code trash"));*/
             userBuyer.getAccounts().add(account);
-            user = userRepository.findById(user.getId())
-                    .orElseThrow(() -> new RuntimeException("Code trash"));
+            /*user = userRepository.findById(user.getId())
+                    .orElseThrow(() -> new RuntimeException("Code trash"));*/
             user.getAccounts().add(account);
+            account.getUsers().add(userBuyer);
+            account.getUsers().add(user);
             log.info("event=presave");
             log.info("event=accountBuilt account={}", account);
             accountService.saveAccount(account);
-            userRepository.save(user);
-            userRepository.save(userBuyer);
+            log.info("event=accountSaved user={} userBuyer={}", user, userBuyer);
+            //userRepository.save(user);
+            //userRepository.save(userBuyer);
         } else {
             Account account = accountService.getAccountById(user.getAccounts().stream().findFirst().get().getId());
             log.info("event=transactingNewPurchase account={}", account);
