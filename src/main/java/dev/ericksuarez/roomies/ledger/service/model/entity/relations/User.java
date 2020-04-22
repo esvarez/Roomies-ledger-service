@@ -55,9 +55,9 @@ public class User implements Serializable {
     //@OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Unit unit;
-/*
-    private String name;
 
+    private String name;
+/*
     private String username;
 
     private Boolean active = true;

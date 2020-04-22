@@ -22,7 +22,7 @@ import java.util.UUID;
 public class AccountFacadeTest {
 
     @Autowired
-    private AccountFacade accountFacade;
+    private PurchaseFacade accountFacade;
 
     @Mock
     private AccountService accountService;
@@ -35,7 +35,7 @@ public class AccountFacadeTest {
 
     @Before
     public void setUp() {
-        this.accountFacade = new AccountFacade(accountService, purchaseService, userRepository);
+        this.accountFacade = new PurchaseFacade(accountService, purchaseService, userRepository);
     }
 
     @Test
@@ -61,5 +61,15 @@ public class AccountFacadeTest {
                 .build();
 
         accountFacade.transactPurchase(purchaseDto);
+    }
+
+    @Test
+    public void doo(){
+        BigDecimal x = BigDecimal.TEN;
+
+
+        System.out.println(x);
+
+        System.out.println(x.negate());
     }
 }

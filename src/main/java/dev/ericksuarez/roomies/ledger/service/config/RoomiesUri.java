@@ -18,4 +18,6 @@ public class RoomiesUri {
 
     public static final String GET_LEDGER_FROM_USER = "/getLedgerFromUser";
 
+    public static final String GET_ACCOUNTS_FROM_USER = "/getAccountsFromUser";
+
 }
