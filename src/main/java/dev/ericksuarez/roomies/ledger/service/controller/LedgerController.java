@@ -24,7 +24,6 @@ import static dev.ericksuarez.roomies.ledger.service.config.RoomiesUri.GET_LEDGE
 import static dev.ericksuarez.roomies.ledger.service.config.RoomiesUri.LEDGER;
 
 @Slf4j
-@RestController
 @RequestMapping(API)
 public class LedgerController {
 
