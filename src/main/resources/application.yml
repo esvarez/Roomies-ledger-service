@@ -8,8 +8,8 @@ spring:
         hibernate:
             ddl-auto: update
     datasource:
-        url: jdbc:mysql://127.0.0.1:6603/roomies
-        username: root
+        url: jdbc:***/tst
+        username: ***
         password: ***
 
     security:
