@@ -10,7 +10,7 @@ spring:
     datasource:
         url: jdbc:mysql://database-dev.cwjxacyxy61s.us-west-1.rds.amazonaws.com:3306/tst
         username: userTest
-        password: Pass
+        password: ***
 
     security:
         oauth2:
