@@ -8,9 +8,9 @@ spring:
         hibernate:
             ddl-auto: update
     datasource:
-        url: jdbc:mysql://127.0.0.1:6603/roomies
-        username: root
-        password: ***
+        url: jdbc:mysql://database-dev.cwjxacyxy61s.us-west-1.rds.amazonaws.com:3306/tst
+        username: userTest
+        password: Pass
 
     security:
         oauth2:

@@ -40,7 +40,7 @@ public class Account extends AuditModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_accounts",
             joinColumns = @JoinColumn(name = "account_id"),
@@ -67,7 +67,9 @@ public class Account extends AuditModel {
             stringBuilder.append("null");
         } else {
             this.users.forEach((user -> {
-                stringBuilder.append(String.format("User=(id=%s, name=%s) ", user.getId().toString(), user.getName()));
+                String name = user.getName() == null? "" : user.getName();
+                String id = user.getId() == null? "" : user.getId().toString();
+                stringBuilder.append(String.format("User=(id=%s, name=%s) ", id, name));
             }));
         }
         stringBuilder.append(String.format("userCred=%s, userDebt=%s, amountDebt=%s)", this.userCred, this.userDebt, this.amountDebt));

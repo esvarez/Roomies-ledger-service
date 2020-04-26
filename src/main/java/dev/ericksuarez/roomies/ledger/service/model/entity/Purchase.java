@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -35,8 +36,6 @@ public class Purchase extends AuditModel {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id", nullable = false)
-    //@OnDelete(cascade = CascadeType.ALL)
-    @JsonIgnore
     private User user;
 
     @Positive

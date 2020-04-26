@@ -19,6 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import dev.ericksuarez.roomies.ledger.service.model.entity.Account;
 import dev.ericksuarez.roomies.ledger.service.model.entity.AuditModel;
 import dev.ericksuarez.roomies.ledger.service.model.entity.Purchase;
@@ -47,9 +48,11 @@ import org.hibernate.annotations.Type;
 @Table(name = "users")
 public class User implements Serializable {
     @Id
+    @GeneratedValue
     @Type(type="uuid-char")
     private UUID id;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "unit_id", nullable = false)
     //@OnDelete(action = OnDeleteAction.CASCADE)
@@ -67,7 +70,7 @@ public class User implements Serializable {
     private Set<Purchase> purchases;
 */
     @JsonIgnore
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany
     @JoinTable(
             name = "users_accounts",
             joinColumns = @JoinColumn(name = "user_id"),
